@@ -54,7 +54,7 @@ String generateJsonSerializableDataClass(
 
 String generateConstructorParameterDeclaration(String fieldKeyName) {
   final parameterName = lowerCamelCase(fieldKeyName);
-  return '''  this.$parameterName''';
+  return '''    this.$parameterName''';
 }
 
 const _unknownType = 'UNKNOWN_DATA_TYPE';
@@ -138,11 +138,14 @@ String generateSerializableClassCode(
   String fieldDeclarations,
   String constructorParameterDeclarations,
 ) {
+  final constructorSpacing =
+      constructorParameterDeclarations.isEmpty ? '' : ' ';
+
   return '''@JsonSerializable()
 class $serializableClassName {
 $fieldDeclarations
 
-  const $serializableClassName($constructorParameterDeclarations);
+  const $serializableClassName($constructorParameterDeclarations$constructorSpacing);
 
   factory $serializableClassName.fromJson(Map<String, dynamic> json) =>
       _\$${serializableClassName}FromJson(json);
