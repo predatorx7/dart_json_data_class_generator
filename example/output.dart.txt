@@ -1,0 +1,61 @@
+/// Manually added
+import 'package:json_annotation/json_annotation.dart';
+
+part 'output.g.dart';
+
+/// Generated
+
+@JsonSerializable()
+class Post {
+  @JsonKey(name: 'userId')
+  final num? userId;
+  @JsonKey(name: 'id')
+  final num? id;
+  @JsonKey(name: 'title')
+  final String? title;
+  @JsonKey(name: 'body')
+  final String? body;
+  @JsonKey(name: 'comments')
+  final List<Comment>? comments;
+
+
+  const Post(
+  this.userId,
+  this.id,
+  this.title,
+  this.body,
+  this.comments,
+);
+
+  factory Post.fromJson(Map<String, dynamic> json) =>
+      _$PostFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PostToJson(this);
+}
+@JsonSerializable()
+class Comment {
+  @JsonKey(name: 'postId')
+  final num? postId;
+  @JsonKey(name: 'id')
+  final num? id;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'email')
+  final String? email;
+  @JsonKey(name: 'body')
+  final String? body;
+
+
+  const Comment(
+  this.postId,
+  this.id,
+  this.name,
+  this.email,
+  this.body,
+);
+
+  factory Comment.fromJson(Map<String, dynamic> json) =>
+      _$CommentFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CommentToJson(this);
+}
